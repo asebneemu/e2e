@@ -70,4 +70,14 @@ describe('Login Form Tests', () => {
         cy.get('p').should('contain', 'Şifre en az 6 karakter olmalıdır'); // Doğru hata mesajı kontrolü
         cy.get('button').should('be.disabled'); // Butonun disabled durumda olduğu kontrolü
     });
+    it('Tüm alanlar boş bırakıldığında hata mesajları görünüyor', () => {
+        cy.get('button').click(); // Boş form ile butona tıkla
+    
+        cy.get('p').should('have.length', 3); // 3 hata mesajı bekleniyor (email, şifre, şartları kabul)
+        cy.get('p').should('contain', 'Email gereklidir'); // Email hata mesajı kontrolü
+        cy.get('p').should('contain', 'Şifre gereklidir'); // Şifre hata mesajı kontrolü
+        cy.get('p').should('contain', 'Şartları kabul etmelisiniz'); // Şartları kabul hata mesajı kontrolü
+        cy.get('button').should('be.disabled'); // Butonun disabled durumda olduğu kontrolü
+    });
+    
 });
