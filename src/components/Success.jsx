@@ -1,6 +1,6 @@
 
 const Success = () => {
-    return <h1>Giriş Başarılı!</h1>;
+    return <h1>Giriş Başarılı! Hoşgeldin!</h1>;
 };
 
 export default Success;
