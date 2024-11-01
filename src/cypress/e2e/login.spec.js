@@ -61,4 +61,13 @@ describe('Login Form Tests', () => {
         cy.get('button').click();
         cy.url().should('not.include', '/success'); // Başarı sayfasına yönlendirme olmamalı
     });
+    it('Geçerli email ama geçersiz şifre girişi yapıldığında hata mesajı görünüyor', () => {
+        cy.get('input[type="email"]').type('test@example.com'); // Geçerli email
+        cy.get('input[type="password"]').type('123'); // Kısa şifre
+        cy.get('button').click();
+    
+        cy.get('p').should('have.length', 1); // 1 hata mesajı bekleniyor
+        cy.get('p').should('contain', 'Şifre en az 6 karakter olmalıdır'); // Doğru hata mesajı kontrolü
+        cy.get('button').should('be.disabled'); // Butonun disabled durumda olduğu kontrolü
+    });
 });
